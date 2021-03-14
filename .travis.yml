@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t lehoan0212/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run lehoan0212/react-test yarn test -- --coverage
+
+after_success:
+  - docker build -t lehoan0212/multi-client ./client
+  - docker build -t lehoan0212/multi-nginx ./nginx
+  - docker build -t lehoan0212/multi-server ./server
+  - docker build -t lehoan0212/multi-worker ./worker
+
+  #Log in Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-std
+
+  #Take those images and push them to docker hub
+  - docker push lehoan0212/multi-client
+  - docker push lehoan0212/multi-nginx
+  - docker push lehoan0212/multi-server
+  - docker push lehoan0212/multi-worker 
