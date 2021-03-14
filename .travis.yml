@@ -6,7 +6,7 @@ before_install:
   - docker build -t lehoan0212/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run lehoan0212/react-test yarn test -- --coverage
+  - docker run -e CI=true lehoan0212/react-test yarn run test -- --coverage
 
 after_success:
   - docker build -t lehoan0212/multi-client ./client
@@ -21,4 +21,4 @@ after_success:
   - docker push lehoan0212/multi-client
   - docker push lehoan0212/multi-nginx
   - docker push lehoan0212/multi-server
-  - docker push lehoan0212/multi-worker 
+  - docker push lehoan0212/multi-worker
