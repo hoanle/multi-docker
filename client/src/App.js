@@ -11,7 +11,7 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Link to="/">Home</Link>
-          <Link to="/otherpage">Other Page</Link>
+          <Link to="/otherpage">Other Pages</Link>
         </header>
       </div>
       <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "paddingTop": "50px"}}>
