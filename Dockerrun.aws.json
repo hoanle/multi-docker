@@ -19,13 +19,6 @@
       "name": "nginx",
       "image": "lehoan0212/multi-nginx",
       "hostname": "nginx",
-      "essential": false,
-      "memory": 128
-    },
-    {
-      "name": "worker",
-      "image": "lehoan0212/multi-worker",
-      "hostname": "worker",
       "essential": true,
       "portMappings": [
         {
@@ -34,6 +27,13 @@
         }
       ],
       "links": ["client", "server"],
+      "memory": 128
+    },
+    {
+      "name": "worker",
+      "image": "lehoan0212/multi-worker",
+      "hostname": "worker",
+      "essential": false,
       "memory": 128
     }
   ]
